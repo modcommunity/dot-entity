@@ -83,6 +83,19 @@ No `Node` base class for entities to inherit. This family keeps state in a recor
 
 No spawner, no catalogue, no budgets. Those are a real second layer — props, NPCs and vehicles have grown three near-identical `def` / `catalogue` / `limits` / `spawner` sets, down to two limit files of exactly the same length that differ only in prose — and extracting them is a change across three addons and a dozen consumers. It is designed in `CLAUDE.md` and not yet built, because an abstract base nobody subclasses is worse than no base at all.
 
+## Who uses it
+
+Four games, and the two that do not are the two with no combat entity ids at all — game-hungario resolves its eating in its own world model and game-simple-lobby has no `dot_combat` linked. Adding a dependency to either would be adding one for nothing.
+
+| | what it replaced | what that cost |
+| --- | --- | --- |
+| game-arena | `1_000_000 + (instance_id % 1_000_000)` for monsters | two monsters a million instance ids apart shared an id, and the loser was unkillable |
+| game-buses-from-hell | a `_next_entity_id` counter, and no `forget()` anywhere | a `DotHealth` per player who ever joined, pointing at a freed node |
+| game-g2gfast | `"u123"` → `123`, one function doing two jobs | none yet; the loadout filename and a session lookup were riding on a runtime handle |
+| game-playground | a counter in one layer, a **name hash** in another | one player had two ids depending on which modes were switched on |
+
+The client shell in dot-server-deploy links it too, and has to: a delivered game pack's scripts resolve addon `class_name`s against the host build, so an addon a game names must be in that list or the pack compiles to nothing.
+
 ## Installing
 
 Copy `addons/dot_entity/` into your project. It depends on dot-core and on nothing else.
