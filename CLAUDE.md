@@ -7,7 +7,7 @@ Read `godot/NOTES.md` and the family conventions in `game-dev/CLAUDE.md` first. 
 `DotCombatManager` has always keyed by `entity_id: int` and has never said where one comes from. Four games filled the gap independently:
 
 - `game-arena` — the peer id for players, `ENTITY_BASE + (npc.instance_id % ENTITY_BASE)` for monsters, `ENTITY_BASE = 1_000_000`, and `is_npc_entity()` as a range check.
-- `game-buses-from-hell` — a `_next_entity_id` counter incremented per player at spawn, stored on `BfhPlayer.entity_id`.
+- `mg-buses-from-hell` — a `_next_entity_id` counter incremented per player at spawn, stored on `BfhPlayer.entity_id`.
 - `game-g2gfast` — `entity_id_for("u123") == 123`, with a `player_id_for` inverse that is *looked up rather than reconstructed*, and a comment explaining why that matters. That comment is this addon describing itself before it existed.
 - `game-hungario`, `game-playground` — variants of the same.
 

@@ -90,7 +90,7 @@ Four games, and the two that do not are the two with no combat entity ids at all
 | | what it replaced | what that cost |
 | --- | --- | --- |
 | game-arena | `1_000_000 + (instance_id % 1_000_000)` for monsters | two monsters a million instance ids apart shared an id, and the loser was unkillable |
-| game-buses-from-hell | a `_next_entity_id` counter, and no `forget()` anywhere | a `DotHealth` per player who ever joined, pointing at a freed node |
+| mg-buses-from-hell | a `_next_entity_id` counter, and no `forget()` anywhere | a `DotHealth` per player who ever joined, pointing at a freed node |
 | game-g2gfast | `"u123"` → `123`, one function doing two jobs | none yet; the loadout filename and a session lookup were riding on a runtime handle |
 | game-playground | a counter in one layer, a **name hash** in another | one player had two ids depending on which modes were switched on |
 
