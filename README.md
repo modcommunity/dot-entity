@@ -121,7 +121,7 @@ done
 timeout 120 godot --headless --path . res://examples/entity_selftest.tscn
 ```
 
-109 checks over 9 sections. It asserts hardest on the properties the schemes it replaces did not have: ids are unique, serials never repeat, and a stale id finds nothing rather than finding somebody else.
+110 checks over 9 sections, the last of which is that the total is what it says. It asserts hardest on the properties the schemes it replaces did not have: ids are unique, serials never repeat, and a stale id finds nothing rather than finding somebody else.
 
 ## Licence
 

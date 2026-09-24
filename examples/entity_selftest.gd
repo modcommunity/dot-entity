@@ -34,6 +34,11 @@ extends Node
 ## godot --headless --path . res://examples/entity_selftest.tscn
 ## [/codeblock]
 
+## Every check this suite runs, including the one that compares against it. The section
+## counter cannot see a section that aborted after announcing itself — its remaining checks
+## simply never run — and a total can. See docs/testing.md.
+const CHECKS := 110
+
 var _entered := 0
 var _completed := 0
 var _passed := 0
@@ -72,6 +77,11 @@ func _run() -> void:
 		_completed == _entered,
 		"every section ran to its last line (%d of %d)" % [_completed, _entered],
 		"a section that aborted stops adding checks and the total cannot show it"
+	)
+	_check(
+		_passed + _failed + 1 == CHECKS,
+		"every check ran (%d of %d)" % [_passed + _failed + 1, CHECKS],
+		"a section that aborted part-way stops adding checks, and only a total can show it"
 	)
 
 	print("")

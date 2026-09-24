@@ -50,7 +50,7 @@ done
 timeout 120 godot --headless --path . res://examples/entity_selftest.tscn
 ```
 
-109 checks, 9 sections, and **read the stderr** — it should be empty. Under `--verbose` section 8 prints one `WRN entity entities were freed without being closed count=3`; that line appearing is correct and it *not* appearing under `--verbose` would be the bug.
+110 checks (the last compares the total), 9 sections, and **read the stderr** — it should be empty. Under `--verbose` section 8 prints one `WRN entity entities were freed without being closed count=3`; that line appearing is correct and it *not* appearing under `--verbose` would be the bug.
 
 `class_name` is global, so after adding a script here, re-run `--import` in every project that links `addons/dot_entity` — not only this one.
 
