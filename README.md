@@ -96,7 +96,7 @@ No spawner, no catalogue, no budgets. Those are a real second layer — props, N
 
 ## Who uses it
 
-Four games, and the two that do not are the two with no combat entity ids at all — game-hungario resolves its eating in its own world model and game-simple-lobby has no `dot_combat` linked. Adding a dependency to either would be adding one for nothing.
+The one game that does not is the one with no combat entity ids at all: game-hungario resolves its eating in its own world model. Adding a dependency to it would be adding one for nothing.
 
 | | what it replaced | what that cost |
 | --- | --- | --- |
