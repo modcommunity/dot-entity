@@ -92,7 +92,7 @@ Everything here is dimension-free. A 2D game gets a `Node2D` in the handle and t
 
 No `Node` base class for entities to inherit. This family keeps state in a record beside the node precisely so nothing has to, a mandatory base class is a fork point, and we do not own the engine's `Node`.
 
-No spawner, no catalogue, no budgets. Those are a real second layer — props, NPCs and vehicles have grown three near-identical `def` / `catalogue` / `limits` / `spawner` sets, down to two limit files of exactly the same length that differ only in prose — and extracting them is a change across three addons and a dozen consumers. It is designed in `CLAUDE.md` and not yet built, because an abstract base nobody subclasses is worse than no base at all.
+No spawner, no catalogue, no budgets. Those are a real second layer — props, NPCs and vehicles have grown three near-identical `def` / `catalogue` / `limits` / `spawner` sets, down to two limit files of exactly the same length that differ only in prose — and extracting them is a change across three addons and a dozen consumers. It is designed in [`docs/design.md`](docs/design.md#the-second-layer-designed-and-not-built) and not yet built, because an abstract base nobody subclasses is worse than no base at all.
 
 ## Who uses it
 
