@@ -1,10 +1,10 @@
-; dot-entity — the id space every world object shares.
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
 ;
-; The distributable is `addons/dot_entity/`. This project exists so the addon can
-; be opened and validated standalone.
-;
-; `addons/dot_core/` is a LOCAL SYMLINK to its own repository and is gitignored.
-; See CLAUDE.md.
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
 config_version=5
 
@@ -25,6 +25,12 @@ window/size/viewport_height=900
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dot_core/plugin.cfg", "res://addons/dot_entity/plugin.cfg")
+
+[importer_defaults]
+
+texture={
+"detect_3d/compress_to": 0
+}
 
 [rendering]
 
