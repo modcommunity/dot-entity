@@ -346,6 +346,9 @@ func count() -> int:
 
 ## How many entities of one kind are open.
 func count_of_kind(kind: int) -> int:
+	if auto_sweep:
+		sweep()
+
 	var n := 0
 
 	for id: int in _by_id:
@@ -370,6 +373,9 @@ func ids() -> Array[int]:
 
 ## Every open id of one kind.
 func ids_of_kind(kind: int) -> Array[int]:
+	if auto_sweep:
+		sweep()
+
 	var out: Array[int] = []
 
 	for id: int in _by_id:
@@ -381,6 +387,9 @@ func ids_of_kind(kind: int) -> Array[int]:
 
 ## Every open handle of one kind.
 func handles_of_kind(kind: int) -> Array[DotEntityHandle]:
+	if auto_sweep:
+		sweep()
+
 	var out: Array[DotEntityHandle] = []
 
 	for id: int in _by_id:
@@ -394,6 +403,9 @@ func handles_of_kind(kind: int) -> Array[DotEntityHandle]:
 
 ## Every open handle one owner is responsible for.
 func handles_of_owner(owner_id: StringName) -> Array[DotEntityHandle]:
+	if auto_sweep:
+		sweep()
+
 	var out: Array[DotEntityHandle] = []
 
 	for id: int in _by_id:

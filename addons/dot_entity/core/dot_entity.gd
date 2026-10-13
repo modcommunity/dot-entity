@@ -4,7 +4,7 @@ extends RefCounted
 
 ## The id space every world object shares, and the arithmetic over it.
 ##
-## [b]This exists because five games invented it five times and disagreed.[/b]
+## [b]This exists because the games each invented it and disagreed.[/b]
 ## [code]DotCombatManager[/code] keys hitboxes, health, authoritative origins and its
 ## [code]entity_killed[/code] signal by an [code]entity_id: int[/code] — and nothing
 ## owned that number. One game used the peer id for players and

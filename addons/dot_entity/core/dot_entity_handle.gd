@@ -28,7 +28,7 @@ var kind: int = DotEntity.KIND_NONE
 ## The node in the world. May be freed; check with [method is_alive].
 ##
 ## [b]Typed [Node] rather than [Node3D], because an entity is not always a 3D one.[/b]
-## Everything this addon does — allocation, ownership, budgets, the lookup, the
+## Everything this addon does — allocation, ownership, the lookup, the
 ## teardown — is about who put what in the world and what it cost, and none of it is
 ## about dimension. A 2D game gets a [Node2D] here and the rest works unchanged.
 var node: Node = null

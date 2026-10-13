@@ -37,7 +37,7 @@ extends Node
 ## Every check this suite runs, including the one that compares against it. The section
 ## counter cannot see a section that aborted after announcing itself — its remaining checks
 ## simply never run — and a total can. See docs/testing.md.
-const CHECKS := 110
+const CHECKS := 111
 
 var _entered := 0
 var _completed := 0
@@ -520,6 +520,17 @@ func _test_the_sweep() -> void:
 		"closed with the reason that says it was not a despawn"
 	)
 	_check(table.sweep() == 0, "a second sweep finds nothing")
+
+	# auto_sweep covers every listing, not only count() and ids(): a per-kind listing
+	# used to hand back a freed node's handle.
+	table.auto_sweep = true
+	var ghost := _node("ghost")
+	table.open(DotEntity.KIND_PROP, ghost, &"someone")
+	ghost.free()
+	_check(
+		table.handles_of_kind(DotEntity.KIND_PROP).size() == 1 and table.count_of_kind(DotEntity.KIND_PROP) == 1,
+		"with auto_sweep a per-kind listing does not hand back a freed node"
+	)
 
 	_done()
 
