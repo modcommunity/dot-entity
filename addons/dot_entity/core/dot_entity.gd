@@ -7,10 +7,10 @@ extends RefCounted
 ## [b]This exists because the games each invented it and disagreed.[/b]
 ## [code]DotCombatManager[/code] keys hitboxes, health, authoritative origins and its
 ## [code]entity_killed[/code] signal by an [code]entity_id: int[/code] — and nothing
-## owned that number. One game used the peer id for players and
-## [code]1_000_000 + (instance_id % 1_000_000)[/code] for monsters; another handed out
-## a counter per player; a third parsed the digits out of a [code]"u123"[/code] userid.
-## Three id spaces, three spellings of "is this one a player", and one of them
+## owned that number. Four games, four schemes: the peer id for players;
+## [code]1_000_000 + (instance_id % 1_000_000)[/code] for monsters; a counter per
+## player; and the digits parsed out of a [code]"u123"[/code] userid.
+## Four id spaces, four spellings of "is this one a player", and one of them
 ## collidable: two nodes whose engine instance ids differ by a multiple of a million
 ## register their health over each other, silently, and the loser simply stops taking
 ## damage.
@@ -25,7 +25,7 @@ extends RefCounted
 ## [codeblock]
 ## var id := table.open(DotEntity.KIND_NPC, node).value.id
 ## DotEntity.kind_of(id)        # DotEntity.KIND_NPC
-## DotEntity.describe_id(id)    # "npc#41"
+## DotEntity.describe_id(id)    # "npc#1", the first npc a fresh table hands out
 ## [/codeblock]
 ##
 ## [b]Serials are never reused, and that is deliberate.[/b] The shipped practice for
