@@ -1,0 +1,9 @@
+# comments
+# Baselines only shrink: scripts/<gate> --update lowers or drops entries and refuses to add.
+addons/dot_entity/core/dot_entity.gd::long_block	7
+addons/dot_entity/core/dot_entity_handle.gd::long_block	9
+addons/dot_entity/core/dot_entity_table.gd::long_block	11
+addons/dot_entity/dot_entity_plugin.gd::long_block	1
+examples/entity_selftest.gd::banner	10
+examples/entity_selftest.gd::history	1
+examples/entity_selftest.gd::long_block	3
