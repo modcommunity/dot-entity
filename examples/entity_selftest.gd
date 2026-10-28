@@ -37,7 +37,7 @@ extends Node
 ## Every check this suite runs, including the one that compares against it. The section
 ## counter cannot see a section that aborted after announcing itself — its remaining checks
 ## simply never run — and a total can. See docs/testing.md.
-const CHECKS := 111
+const CHECKS := 114
 
 var _entered := 0
 var _completed := 0
@@ -531,6 +531,15 @@ func _test_the_sweep() -> void:
 		table.handles_of_kind(DotEntity.KIND_PROP).size() == 1 and table.count_of_kind(DotEntity.KIND_PROP) == 1,
 		"with auto_sweep a per-kind listing does not hand back a freed node"
 	)
+
+	# A handle kept past its node's death: is/as on a freed instance is a script error.
+	var held := DotEntityTable.new()
+	var gone := _node("gone")
+	var held_handle: DotEntityHandle = held.open(DotEntity.KIND_PROP, gone, &"someone").value
+	gone.free()
+	_check(not held_handle.is_2d(), "a freed node's handle is not 2D")
+	_check(held_handle.node_3d() == null, "and hands back no Node3D")
+	_check(held_handle.node_2d() == null, "nor Node2D")
 
 	_done()
 

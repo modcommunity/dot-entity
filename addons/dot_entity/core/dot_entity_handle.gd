@@ -88,17 +88,17 @@ func is_kind(p_kind: int) -> bool:
 ## preview is exactly that — cannot tell from the id, because the id deliberately says
 ## nothing about dimension. The node knows.
 func is_2d() -> bool:
-	return node is Node2D
+	return is_instance_valid(node) and node is Node2D
 
 
 ## The node as a [Node3D], or null.
 func node_3d() -> Node3D:
-	return node as Node3D
+	return (node as Node3D) if is_instance_valid(node) else null
 
 
 ## The node as a [Node2D], or null.
 func node_2d() -> Node2D:
-	return node as Node2D
+	return (node as Node2D) if is_instance_valid(node) else null
 
 
 ## Where it is, in 3D. [constant Vector3.ZERO] when it is dead, not 3D, or unparented.
