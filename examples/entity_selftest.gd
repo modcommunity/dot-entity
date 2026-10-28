@@ -37,7 +37,7 @@ extends Node
 ## Every check this suite runs, including the one that compares against it. The section
 ## counter cannot see a section that aborted after announcing itself — its remaining checks
 ## simply never run — and a total can. See docs/testing.md.
-const CHECKS := 114
+const CHECKS := 115
 
 var _entered := 0
 var _completed := 0
@@ -537,9 +537,13 @@ func _test_the_sweep() -> void:
 	var gone := _node("gone")
 	var held_handle: DotEntityHandle = held.open(DotEntity.KIND_PROP, gone, &"someone").value
 	gone.free()
+	var catcher := ErrorCatcher.new()
+	OS.add_logger(catcher)
 	_check(not held_handle.is_2d(), "a freed node's handle is not 2D")
 	_check(held_handle.node_3d() == null, "and hands back no Node3D")
 	_check(held_handle.node_2d() == null, "nor Node2D")
+	OS.remove_logger(catcher)
+	_check(catcher.errors.is_empty(), "and none of that raised an engine error", str(catcher.errors))
 
 	_done()
 
@@ -626,3 +630,13 @@ func _teardown() -> void:
 	for n in _made:
 		if is_instance_valid(n):
 			n.free()
+
+
+## An unguarded call on a freed node still returns a plausible value, so only the error shows it.
+class ErrorCatcher extends Logger:
+	var errors: Array[String] = []
+
+	func _log_error(function: String, _file: String, _line: int, code: String,
+			rationale: String, _editor_notify: bool, _error_type: int,
+			_script_backtraces: Array) -> void:
+		errors.append("%s %s %s" % [code, rationale, function])
