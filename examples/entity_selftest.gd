@@ -226,6 +226,13 @@ func _test_the_node_index() -> void:
 	_check(handle.position() == Vector3.ZERO, "position answers rather than crashing")
 	_check(where == Vector3.ZERO, "a plain Node has no position, which is not an error")
 
+	_node_index_dimensions(table)
+	_node_index_orphans(table)
+
+	_done()
+
+
+func _node_index_dimensions(table: DotEntityTable) -> void:
 	# The dimension-free half. A 2D game gets a Node2D here and nothing else changes,
 	# which is only true if these four actually answer -- and an addon whose 2D path
 	# is never exercised is an addon that has a 3D path.
@@ -257,6 +264,8 @@ func _test_the_node_index() -> void:
 	_check(tall_handle.position() == Vector3(1.0, 2.0, 3.0), "position answers in three")
 	_check(tall_handle.position_2d() == Vector2.ZERO, "and the 2D one declines")
 
+
+func _node_index_orphans(table: DotEntityTable) -> void:
 	# The guard on both, and the reason it is there: a global transform is only defined
 	# inside the tree, and the engine's two answers for a node outside it disagree --
 	# Node3D pushes an error with a backtrace and returns identity, Node2D silently
@@ -278,8 +287,6 @@ func _test_the_node_index() -> void:
 	_check(o3.position() == Vector3.ZERO, "an unparented 3D entity has no position")
 	_check(o2.position_2d() == Vector2.ZERO, "and neither has an unparented 2D one")
 	_check(o3.is_alive() and o2.is_alive(), "though both are alive -- it is a real state")
-
-	_done()
 
 
 # --- 4. The key index -------------------------------------------------------
