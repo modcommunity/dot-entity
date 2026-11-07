@@ -1,3 +1,2 @@
 # size
 # Baselines only shrink: scripts/<gate> --update lowers or drops entries and refuses to add.
-examples/entity_selftest.gd::_test_the_node_index	82
