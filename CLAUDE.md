@@ -26,7 +26,7 @@ Paths except `examples/` are in `addons/dot_entity/`.
 
 ## Running and testing
 
-The family's two steps ([game-dev/CLAUDE.md](../../CLAUDE.md#validating-anything)), then `timeout 120 godot --headless --path . res://examples/entity_selftest.tscn`. Stderr should be empty. After adding a `class_name` here, re-run `--import` in every project that links `addons/dot_entity`.
+The family's two steps ([family CLAUDE.md](../../CLAUDE.md#validating-anything)), then `timeout 120 godot --headless --path . res://examples/entity_selftest.tscn`. Stderr should be empty. After adding a `class_name` here, re-run `--import` in every project that links `addons/dot_entity`.
 
 ## Rules that bite
 
